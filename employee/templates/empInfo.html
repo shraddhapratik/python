@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			.palel-primary
+			{
+				border-color: #65a4da;
+			}
+			.panel-primary>.panel-heading
+			{
+				background:#65a4da;
+
+			}
+			.panel-primary>.panel-body
+			{
+				background-color: #EDEDED;
+			}
+			#tblemp{
+				background:#65a4da;
+			}
+		</style>
+	</head>
+<body>
+<div class="row" style="margin-top: 5%;">
+    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
+        <div class="panel panel-primary">
+			<div class="panel-heading">Add Employee</div>
+			<div class="panel-body">
+                <form method="POST" class="post-form" action="/create/">
+                        {% csrf_token %}
+                    <div class="container">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Id:</label>
+                            <div class="col-sm-4">
+                              {{ form.eid }}
+                                <input type="hidden" name="id"  value="{{emp.eid}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Name:</label>
+                            <div class="col-md-6">
+                              {{ form.ename }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Email:</label>
+                            <div class="col-sm-4">
+                              {{ form.eemail }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Address:</label>
+                            <div class="col-sm-4">
+                                {{ form.eaddress }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Salary:</label>
+                            <div class="col-sm-4">
+                              {{ form.esalary }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Age:</label>
+                            <div class="col-sm-4">
+                              {{ form.eage }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee Contact:</label>
+                            <div class="col-sm-4">
+                              {{ form.econtact }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+		</div>
+	</div>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<table class="table table-bordered" style="width:80%;margin-left:10%">
+    <thead id="tblemp">
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Employee Email</th>
+        <th>Employee Contact</th>
+        <th>Employee Age</th>
+        <th>Employee Address</th>
+        <th>Employee Salary</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for employee in empList %}
+    <tr>
+        <td>{{ employee.eid }}</td>
+        <td>{{ employee.ename }}</td>
+        <td>{{ employee.eemail }}</td>
+        <td>{{ employee.econtact }}</td>
+        <td>{{ employee.eage }}</td>
+        <td>{{ employee.eaddress }}</td>
+        <td>{{ employee.esalary }}</td>
+        <td>
+            <a href="/edit/{{ employee.eid }}"><span class="glyphicon glyphicon-pencil" ></span></a>
+            <a href="/delete/{{ employee.eid }}"><span class="glyphicon glyphicon-remove" ></span></a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
