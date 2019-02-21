@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Address Page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			.palel-primary
+			{
+				border-color: #65a4da;
+			}
+			.panel-primary>.panel-heading
+			{
+				background:#65a4da;
+
+			}
+			.panel-primary>.panel-body
+			{
+				background-color: #EDEDED;
+			}
+			#tblemp{
+				background:#65a4da;
+			}
+		</style>
+	</head>
+<body>
+<div class="row" style="margin-top: 5%;">
+    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
+        <div class="panel panel-primary">
+			<div class="panel-heading">Add Employee Address</div>
+			<div class="panel-body">
+                <form method="POST" class="post-form" action="/addAddress/">
+                        {% csrf_token %}
+                    <div class="container">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Address Id:</label>
+                            <div class="col-sm-4">
+                              {{ form.aid }}
+                                <input type="hidden" name="id"  value="{{adr.eid}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">City:</label>
+                            <div class="col-md-6">
+                              {{ form.acity }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">State:</label>
+                            <div class="col-sm-4">
+                              {{ form.astate }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Employee :</label>
+                            <div class="col-sm-4">
+                                {{ form.emp }}
+                                <a href="/empone/"><span class="glyphicon glyphicon-plus" >Add Employee</span></a>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+		</div>
+	</div>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<table class="table table-bordered" style="width:80%;margin-left:10%">
+    <thead id="tblemp">
+    <tr>
+            <th>Address ID</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for adr in addressList %}
+        <tr>
+            <td>{{ adr.aid }}</td>
+            <td>{{ adr.acity }}</td>
+            <td>{{ adr.astate }}</td>
+            <td>
+                <a href="/editAddress/{{ adr.aid }}"><span class="glyphicon glyphicon-pencil" ></span></a>
+                <a href="/deleteAddress/{{ adr.aid }}"><span class="glyphicon glyphicon-remove" ></span></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>E
