@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from employee.views import add_or_update_emp,edit_emp,show,delete_emp
 from emp_mapping.views import showemp,add_Update_emp,edit_empone,delete_empone,showaddress,add_address,edit_address,delete_address
+from emp_many_mapping.views import showoneemp,add_Update_empone,edit_employeeone,delete_employeeone,showmanyaddress,add_manyaddress,edit_manyaddress,delete_manyaddress
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('edit/<int:id>', edit_emp),
     path('delete/<int:id>', delete_emp),
 
+    ##ONE TO ONE##
     path('empone/', showemp),
     path('addEmp/', add_Update_emp),
     path('editEmp/<int:id>', edit_empone),
@@ -34,4 +36,16 @@ urlpatterns = [
     path('addAddress/', add_address),
     path('editAddress/<int:id>', edit_address),
     path('deleteAddress/<int:id>', delete_address),
+
+    ##ONE TO MANY##
+    path('oneEmpl/', showoneemp),
+    path('addOneEmp/', add_Update_empone),
+    path('editEmpOne/<int:id>', edit_employeeone),
+    path('deleteEmpOne/<int:id>', delete_employeeone),
+
+    path('manyAddress/', showmanyaddress),
+    path('addManyAddress/', add_manyaddress),
+    path('editManyAddress/<int:id>', edit_manyaddress),
+    path('deleteAddress/<int:id>', delete_manyaddress),
+
 ]

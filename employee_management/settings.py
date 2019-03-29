@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'employee',
-    'emp_mapping'
+    'emp_mapping',
+    'emp_many_mapping',
 ]
 
 MIDDLEWARE = [
